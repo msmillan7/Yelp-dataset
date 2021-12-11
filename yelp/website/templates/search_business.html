@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Business Rastreator{% endblock %}
+{% block content%}
+<form method= "GET">
+        <br />
+        <h3 align="center">Business Rastreator</h3>
+        <h5 align="center" style="color:red">- Yelp -</h5>
+        <br />
+        <div class="form-group">
+                <label for="business">Business </label>
+                <input
+                        type="text"
+                        id="tags"
+			class="form-control"
+                        name="business"
+                        placeholder="Enter business name"
+                >
+		<script>
+		  $( function() {
+		    var availableTags = [
+		        {% for business_options in business_options %}
+		            "{{types_options}}",
+		        {% endfor %}
+		    ];
+		    $( "#tags" ).autocomplete({
+		      source: availableTags
+		    });
+		  } );
+		</script>
+		
+        </div>
+        <br />
+        <div class="form-group">
+                <label for="type">Type of Business </label>
+                <select name="type" id="type">
+                        <option value="all">All</option>
+                        <option value="Active Life">Active Life</option>
+                        <option value="Arts and Entertainment">Arts and Entertainment</option>
+                        <option value="Beauty and Spas">Beauty and Spas</option>
+                        <option value="Education">Education</option>
+                        <option value="Event Planning and Services">Event Planning and Services</option>
+                        <option value="Financial Services">Financial Services</option>
+                        <option value="Food">Food</option>
+			<option value="Health and Medical">Health and Medical</option>
+                        <option value="Hotels">Hotels</option>
+                        <option value="Restaurants">Restaurants</option>
+			<option value="Shopping">Shopping</option>
+                </select>
+        </div>
+        <button type="submit" class="btn btn-primary bg-danger">Search close business</button>
+        <br />
+        <br />
+        <div>
+        <table class="table">
+                <tr>
+                        {% for header in headings %}
+                        <th>{{ header }}</th>
+                        {% endfor %}
+                </tr>
+                {% for row in data %}
+                <tr>
+                        {% for cell in row %}
+                        <td>{{ cell }}</td>
+                        {% endfor %}
+                </tr>
+                {% endfor %}
+        </table>
+        </div>
+        <br />
+	<br />
+        <p align="center"> <font size="1">Author: Marina Sánchez</font></p>
+</form>
+
+{% endblock %}
+
